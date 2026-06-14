@@ -57,7 +57,7 @@ export default function (eleventyConfig) {
   eleventyConfig.setLibrary("md", markdownLibrary);
 
   return {
-    pathPrefix: "/blog/",
+    pathPrefix: "/",
     dir: {
       input: "src",
       output: "_site",
