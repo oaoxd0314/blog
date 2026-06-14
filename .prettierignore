@@ -1,0 +1,9 @@
+_site
+node_modules
+bun.lock
+src/assets
+*.njk
+
+# Authored content — never reformat posts/pages (preserves code samples as written)
+src/posts
+src/static/*.md

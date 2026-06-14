@@ -1,17 +1,15 @@
 ---
-title: homepage
+title: Home
 layout: layouts/base.njk
 ---
 
-{# <h1>static page</h1>
-<ul>
-    {%- for post in collections.static -%}
-        <li>
-            <a href={{post.url}}>{{post.data.title}}</a>
-        </li>
-    {%-endfor-%}
-</ul> #}
+<section class="mb-12">
+  <h1 class="text-3xl font-bold tracking-tight leading-tight">{{ metadata.title }}</h1>
+  <p class="mt-3 text-md text-fg-muted leading-relaxed">{{ metadata.description }}</p>
+</section>
 
-<h1>all posts</h1>
-{% set postslist = collections.posts %}
-{% include "postslist.njk" %}
+<section>
+  <h2 class="text-xs font-semibold uppercase tracking-wide text-fg-subtle mb-4">All posts</h2>
+  {% set postslist = collections.posts | reverse %}
+  {% include "postslist.njk" %}
+</section>

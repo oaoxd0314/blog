@@ -1,29 +1,40 @@
 {
   "name": "11ty_blog",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "watch:sass": "npx sass src/style:_site/css --watch",
-    "build:sass": "npx sass src/style:_site/css",
-    "watch:11ty": "eleventy --serve",
-    "build:11ty": "eleventy",
-    "start": "npm-run-all build:sass --parallel watch:*",
-    "build": "npm-run-all build:*"
-  },
-  "author": "",
+  "version": "2.0.0",
+  "description": "ChrisW's tech blog — Eleventy 3 + Tailwind CSS 4",
+  "type": "module",
   "license": "ISC",
-  "dependencies": {
-    "@11ty/eleventy": "^1.0.1",
-    "@11ty/eleventy-plugin-syntaxhighlight": "^4.0.0",
-    "esm": "^3.2.25",
-    "markdown-it": "^13.0.0",
-    "markdown-it-anchor": "^8.6.2",
-    "node-fetch": "^2.6.7",
-    "npm-run-all": "^4.1.5",
-    "sass": "^1.51.0"
+  "scripts": {
+    "validate": "bun run scripts/validate.js",
+    "prebuild": "bun run validate",
+    "build:css": "bunx @tailwindcss/cli -i src/css/main.css -o _site/css/main.css --minify",
+    "build:11ty": "bunx @11ty/eleventy",
+    "build": "bun run build:css && bun run build:11ty",
+    "watch:css": "bunx @tailwindcss/cli -i src/css/main.css -o _site/css/main.css --watch",
+    "dev": "bun run validate && (bun run watch:css & bunx @11ty/eleventy --serve)",
+    "lint": "bunx eslint .",
+    "lint:fix": "bunx eslint . --fix",
+    "format": "bunx prettier --write .",
+    "format:check": "bunx prettier --check .",
+    "type-check": "bunx tsc --noEmit",
+    "check": "bun run type-check && bun run lint && bun run format:check",
+    "prepare": "husky"
   },
   "devDependencies": {
-    "tailwindcss": "^3.0.24"
+    "@11ty/eleventy": "^3.0.0",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
+    "@eslint/js": "^10.0.1",
+    "@tailwindcss/cli": "^4.0.0",
+    "@types/node": "^25.9.3",
+    "eslint": "^10.5.0",
+    "globals": "^17.6.0",
+    "gray-matter": "^4.0.3",
+    "husky": "^9.1.7",
+    "luxon": "^3.5.0",
+    "markdown-it": "^14.1.0",
+    "markdown-it-anchor": "^9.2.0",
+    "prettier": "^3.8.4",
+    "typescript": "^6.0.3",
+    "zod": "^4.0.0"
   }
 }

@@ -1,26 +1,9 @@
 {
   "title": "ChrisW Blog",
-  "url": "https://chrisw-code968.netlify.app/",
-  "domain": "update-me.com",
-  "description": "this is a blog,it's contain all the author: chrisW want to share / learing 's stuff",
-  "genre": "Insert a schema.org genre",
-  "googleAnalyticsId": "GA ID. Update me. Note, that this is not compatible with the not-yet-commonly used version 4 of Google Analytics",
-  "sendWebVitals": false,
-  "feed": {
-    "subtitle": "This is ChrisW's Tech Blog",
-    "filename": "feed.xml",
-    "path": "/feed/feed.xml",
-    "id": "https://chrisw-code968.netlify.app/"
-  },
-  "jsonfeed": {
-    "path": "/feed/feed.json",
-    "url": "https://chrisw-code968.netlify.app//feed/feed.json"
-  },
+  "url": "https://oaoxd0314.github.io/blog",
+  "description": "A tech blog where ChrisW shares notes on JavaScript, algorithms, and functional programming.",
   "author": {
     "name": "ChrisW",
     "twitterHandle": "update_me"
-  },
-  "publisher": {
-    "name": "Yang Wei Wang"
   }
 }

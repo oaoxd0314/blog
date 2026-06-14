@@ -1,8 +1,11 @@
 ---
-title: about me
-tags: 
- - "page"
+title: About
+tags:
+  - "page"
 layout: layouts/base.njk
 ---
 
-# about me
+<article class="prose">
+  <h1>About me</h1>
+  <p>Hi, I'm {{ metadata.author.name }}. {{ metadata.description }}</p>
+</article>

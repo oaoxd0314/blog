@@ -1,35 +1,26 @@
-<div class="text-center">
-    <ul class="pagination">
-        {%- if pagination.href.first -%}
-        <li> 
-            <a href="{{pagination.href.first | url }}" >First</a> 
-        <li>
-        {%- endif -%}    
+{% if pagination.pages.length > 1 %}
+<nav aria-label="Pagination" class="mt-10">
+  <ul class="flex flex-wrap items-center justify-center gap-1 text-sm">
+    {%- if pagination.href.previous -%}
+      <li><a href="{{ pagination.href.previous | url }}"
+             class="px-3 py-1.5 rounded-md border border-border hover:border-accent transition-colors">&lt;</a></li>
+    {%- endif -%}
 
-        {%- if pagination.href.previous -%}
-        <li> 
-            <a href="{{pagination.href.previous | url }}" >&lt;</a> 
-        <li>
-        {%- endif -%} 
+    {%- for pageEntry in pagination.pages -%}
+      {%- set pageHref = pagination.hrefs[loop.index0] -%}
+      <li>
+        <a href="{{ pageHref }}"
+           class="px-3 py-1.5 rounded-md border transition-colors
+                  {% if page.url == pageHref %}border-accent bg-accent-muted text-fg{% else %}border-border hover:border-accent{% endif %}">
+          {{ loop.index }}
+        </a>
+      </li>
+    {%- endfor -%}
 
-        {% set page_index = 1 %}
-        {%- for page in pagination.hrefs -%}
-            <li>
-                <a href="{{page}}">{{page_index}}</a>
-            </li>
-        {% set page_index = page_index +1 %}
-        {%-endfor-%}
-
-        {%- if pagination.href.next -%}
-        <li> 
-            <a href="{{pagination.href.next | url }}" >&gt;</a> 
-        <li>
-        {%- endif -%} 
-
-        {%- if pagination.href.last -%}
-        <li> 
-            <a href="{{pagination.href.last | url }}" >last</a> 
-        <li>
-        {%- endif -%} 
-    </ul>
-</div>
+    {%- if pagination.href.next -%}
+      <li><a href="{{ pagination.href.next | url }}"
+             class="px-3 py-1.5 rounded-md border border-border hover:border-accent transition-colors">&gt;</a></li>
+    {%- endif -%}
+  </ul>
+</nav>
+{% endif %}
