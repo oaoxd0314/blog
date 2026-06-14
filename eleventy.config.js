@@ -12,6 +12,7 @@ export default function (eleventyConfig) {
 
   /* shared data */
   eleventyConfig.addGlobalData("env", process.env.ELEVENTY_ENV || "development");
+  eleventyConfig.addGlobalData("currentYear", () => new Date().getFullYear());
 
   /* plugins */
   eleventyConfig.addPlugin(pluginSyntaxHighlight);
