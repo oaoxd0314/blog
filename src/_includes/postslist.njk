@@ -1,33 +1,36 @@
-{% for post in postslist | reverse %}
-  <div class="under-line">
-    <div class="pd-t-sm">
-      <div class="flex-col">
-        <div class="b">
-            <time  datetime="{{ post.date | htmlDateString }}">{{ post.date | readableDate }}</time> | <span>2 min</span>
-        </div>
+<ul class="flex flex-col divide-y divide-border-muted">
+  {% for post in postslist %}
+    <li class="py-6 first:pt-0">
+      <article class="flex flex-col gap-2">
+        <p class="flex items-center gap-2 text-xs text-fg-subtle">
+          <time datetime="{{ post.date | htmlDateString }}">{{ post.date | readableDate }}</time>
+        </p>
 
-        <div class="flex-row mg-t-sm">
+        <div class="flex gap-4 items-start justify-between">
+          <div class="flex-1 min-w-0">
+            <h2 class="text-xl font-semibold leading-snug">
+              <a href="{{ post.url | url }}" class="hover:text-accent-hover transition-colors">
+                {% if post.data.title %}{{ post.data.title }}{% else %}<code>{{ post.url }}</code>{% endif %}
+              </a>
+            </h2>
 
-          <div class="fi">
-            <div id="title" class="pd-b-xs">{% if post.data.title %}{{ post.data.title }}{% else %}<code>{{ post.url }}</code>{% endif %}</div>
+            {% if post.data.description %}
+              <p class="mt-2 text-fg-muted line-clamp-3">{{ post.data.description }}</p>
+            {% endif %}
 
-            <div class="content">
-              {{post.data.description}}
-            </div>
-
-            <div class="b pd-tb-sm">
-              <a href="{{ post.url | url }}">read more</a>
-            </div>
+            <a href="{{ post.url | url }}"
+               class="inline-block mt-3 text-sm font-medium text-accent hover:text-accent-hover transition-colors">
+              read more →
+            </a>
           </div>
 
-          <div class="b mg-l-md">
-            {# <div class="fake-img"></div> #}
-            <img src="{{post.data.image}}" alt="{{post.data.imageAlt}}" class="post-img">
-          </div>
-
+          {% if post.data.image %}
+            <img src="{{ post.data.image }}" alt="{{ post.data.imageAlt }}"
+                 loading="lazy"
+                 class="hidden sm:block w-28 h-28 object-cover rounded-lg shrink-0" />
+          {% endif %}
         </div>
-        
-      </div>
-    </div>
-  </div>
-{% endfor %}
+      </article>
+    </li>
+  {% endfor %}
+</ul>

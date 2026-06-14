@@ -1,8 +1,8 @@
-<section class="flex-row flex-w flex-r-g-sm flex-c-g-sm">
+<section class="flex flex-wrap gap-2">
   {% for tag in collections.tagList %}
-    {% set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
-    <span class="tag">
-      <a href="{{ tagUrl | url }}">{{ tag }}</a>
-    </span>
+    <a href="{{ ('/tags/' + (tag | slugify) + '/') | url }}"
+       class="text-xs px-3 py-1 rounded-full bg-surface-2 text-fg-muted hover:text-fg hover:bg-accent-muted transition-colors">
+      {{ tag }}
+    </a>
   {% endfor %}
 </section>

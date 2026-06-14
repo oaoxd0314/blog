@@ -1,23 +1,22 @@
-<header>
-    <nav>
-        <div id="nav">
-            <h1>
-                <a href="{{ '/' | url }}" title="Homepage">{{ metadata.title }}</a>
-            </h1>
-            {#- Read more about `eleventy-navigation` at https://www.11ty.dev/docs/plugins/navigation/ #}
-            {%- for entry in navigation %}
-                <a href="{{ entry.url | url }}">{{ entry.name }}</a>
-            {%- endfor %}
-        </div>
-        {# <div id="reading-progress" aria-hidden="true"></div> #}
-    </nav>
-    <h1>{{ title }}</h1>
-    {# {% block extraArticleHeader %}{% endblock %}
-    <dialog id="message"></dialog>
-    {% if googleanalytics %}
-        <noscript>
-            <img src="/.netlify/functions/ga?v=1&_v=j83&t=pageview&dr=https%3A%2F%2Fno-script.com&_s=1&dh={{ metadata.domain | encodeURIComponent }}&dp={{ page.url | encodeURIComponent }}&ul=en-us&de=UTF-8&dt={{title|encodeURIComponent}}&tid={{googleanalytics}}" width="1" height="1"
-        style="display:none" alt="">
-        </noscript>
-    {% endif %} #}
+<header class="border-b border-border-muted">
+  <nav class="w-full mx-auto max-w-3xl px-4 h-16 flex items-center justify-between gap-4">
+    <a href="{{ '/' | url }}" title="Homepage" class="font-bold text-lg tracking-snug">
+      {{ metadata.title }}
+    </a>
+
+    <div class="flex items-center gap-5 text-sm text-fg-muted">
+      {%- for entry in navigation %}
+        <a href="{{ entry.url | url }}" class="hover:text-fg transition-colors">{{ entry.name }}</a>
+      {%- endfor %}
+
+      <button
+        type="button"
+        data-theme-toggle
+        aria-label="Toggle dark mode"
+        class="grid place-items-center w-8 h-8 rounded-md border border-border hover:border-border-strong transition-colors"
+      >
+        <span data-theme-icon aria-hidden="true">🌙</span>
+      </button>
+    </div>
+  </nav>
 </header>

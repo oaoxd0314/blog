@@ -18,7 +18,14 @@ eleventyComputed:
 permalink: /tags/{{ tag | slugify }}/
 ---
 
-{% set postslist = collections[ tag ] %}
+<section class="mb-8">
+  <p class="text-xs font-semibold uppercase tracking-wide text-fg-subtle">Tag</p>
+  <h1 class="text-3xl font-bold tracking-tight leading-tight mt-1">#{{ tag }}</h1>
+</section>
+
+{% set postslist = collections[ tag ] | reverse %}
 {% include "postslist.njk" %}
 
-<p>See <a href="{{ '/posts/' | url }}">all tags</a>.</p>
+<p class="mt-10 text-sm">
+  <a href="{{ '/posts/' | url }}" class="text-accent hover:text-accent-hover">← All posts &amp; tags</a>
+</p>

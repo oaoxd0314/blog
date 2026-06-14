@@ -1,38 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }}</title>
-    <link rel="stylesheet" href="/css/index.css">
-    <script defer src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% if title %}{{ title }} · {% endif %}{{ metadata.title }}</title>
+  <meta name="description" content="{{ description or metadata.description }}" />
+  <link rel="stylesheet" href="{{ '/css/main.css' | url }}" />
+  {# Set theme before paint to avoid a flash of the wrong theme. #}
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("theme");
+        if (!t) t = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {}
+    })();
+  </script>
 </head>
-<body>
+<body class="min-h-screen flex flex-col">
+  {% include "header.njk" %}
 
-    {% include "../header.njk" %}
-    
-    <main>
-        <article>
-        {% block article %}
-          {{ content | safe }}
-        {% endblock %}
-        </article>
-    </main>
+  <main class="flex-1 w-full mx-auto max-w-3xl px-4 py-10 md:py-16">
+    {% block content %}{{ content | safe }}{% endblock %}
+  </main>
 
-    {% include "../footer.njk" %}
+  {% include "footer.njk" %}
 
-    {# netlify CMS #}
-    <script>
-        if (window.netlifyIdentity) {
-            window.netlifyIdentity.on("init", user => {
-            if (!user) {
-                window.netlifyIdentity.on("login", () => {
-                document.location.href = "/admin/";
-                });
-            }
-            });
-        }
-    </script>
+  <script type="module" src="{{ '/js/app.js' | url }}"></script>
 </body>
 </html>

@@ -1,21 +1,19 @@
 ---
-title: posts
-tags: 
- - "page"
+title: Posts
+tags:
+  - "page"
 layout: layouts/base.njk
 pagination:
-    data: collections.posts
-    size: 5
-    alias: postslist
+  data: collections.posts
+  size: 5
+  alias: postslist
+  reverse: true
 ---
 
-
-{% include "./_includes/tagList.njk" %}
-
-<h1>all posts</h1>
-{# {% set postslist = collections.posts %} #}
+<section class="mb-10">
+  <h1 class="text-3xl font-bold tracking-tight leading-tight mb-4">Posts</h1>
+  {% include "tagList.njk" %}
+</section>
 
 {% include "postslist.njk" %}
-{% include "./_includes/pagination.njk" %}
-
-{# {% include "./_includes/fetchData.njk" %} #}
+{% include "pagination.njk" %}

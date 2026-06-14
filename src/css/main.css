@@ -1,0 +1,86 @@
+@import "tailwindcss";
+@import "../../tooling/theme.css";
+
+/* Use [data-theme="dark"] (not prefers-color-scheme) for the dark variant. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* Self-hosted variable Inter (relative path → pathPrefix-agnostic). */
+@font-face {
+  font-family: "Inter UI";
+  font-weight: 100 900;
+  font-style: oblique 0deg 10deg;
+  font-display: swap;
+  src: url("../assets/fonts/Inter-3.19.var.woff2") format("woff2");
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-bg);
+    color: var(--color-fg);
+    line-height: var(--leading-normal);
+    transition:
+      background-color 200ms ease,
+      color 200ms ease;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+/* ── Prism syntax highlighting, themed from the design tokens ── */
+@layer components {
+  .token.comment,
+  .token.prolog,
+  .token.doctype,
+  .token.cdata {
+    color: var(--color-fg-subtle);
+  }
+  .token.punctuation {
+    color: var(--color-code-fg);
+  }
+  .token.tag,
+  .token.deleted,
+  .token.symbol {
+    color: oklch(70% 0.12 15);
+  }
+  .token.function,
+  .token.function-name,
+  .token.class-name {
+    color: oklch(58% 0.09 245);
+  }
+  .token.number,
+  .token.boolean {
+    color: oklch(71% 0.13 55);
+  }
+  .token.constant,
+  .token.property,
+  .token.attr-name {
+    color: oklch(83% 0.13 80);
+  }
+  .token.keyword,
+  .token.selector,
+  .token.important,
+  .token.atrule {
+    color: oklch(72% 0.09 310);
+  }
+  .token.string,
+  .token.attr-value,
+  .token.char,
+  .token.inserted,
+  .token.regex {
+    color: oklch(73% 0.11 155);
+  }
+  .token.operator,
+  .token.url,
+  .token.variable {
+    color: oklch(75% 0.09 195);
+  }
+}
