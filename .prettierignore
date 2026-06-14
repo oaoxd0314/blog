@@ -3,6 +3,7 @@ node_modules
 bun.lock
 src/assets
 *.njk
+.claude
 
 # Authored content — never reformat posts/pages (preserves code samples as written)
 src/posts
